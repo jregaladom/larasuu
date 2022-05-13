@@ -7,7 +7,7 @@
         "illuminate/http": "^8.42",
         "illuminate/support": "^8.42"
     },
-    "license": "propietary",
+    "license": "proprietary",
     "authors": [{
         "name": "jose.regalado",
         "email": "jose.regalado@irapuato.gob.mx"
