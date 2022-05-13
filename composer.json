@@ -1,0 +1,31 @@
+{
+    "name": "tig-irapuato/larasuu",
+    "description": "Este paquete es usado para la autenticaticación de usuarios del sistema SUU",
+    "type": "library",
+    "require": {
+        "php": "^7.4",
+        "illuminate/http": "^8.42",
+        "illuminate/support": "^8.42"
+    },
+    "license": "propietary",
+    "authors": [{
+        "name": "jose.regalado",
+        "email": "jose.regalado@irapuato.gob.mx"
+    }],
+    "autoload": {
+        "psr-4": {
+            "TIGIrapuato\\LaraSUU\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "TIGIrapuato\\LaraSUU\\LoginSUUProvider"
+            ]
+        }
+    }
+}
