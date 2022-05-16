@@ -34,6 +34,24 @@ class LoginSUUProvider extends ServiceProvider
             Console\InstallCommand::class,
         ]);
 
+        $this->mergeConfigFrom(
+            __DIR__ . '/../stubs/default/config/authsuu.php',
+            'authsuu'
+        );
+
+        $this->publishes([
+            __DIR__ . '/../stubs/default/config/authsuu.php' => config_path('authsuu.php'),
+        ]);
+    }
+
+    /**
+     * Register any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        
     }
 
     /**
@@ -43,7 +61,6 @@ class LoginSUUProvider extends ServiceProvider
      */
     public function map()
     {
-        
     }
 
 
@@ -68,7 +85,7 @@ class LoginSUUProvider extends ServiceProvider
     protected function mapAuthSUURoutes()
     {
         Route::prefix('authsuu')
-        ->namespace($this->namespace)
-        ->group(base_path('routes/authsuu.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/authsuu.php'));
     }
 }
