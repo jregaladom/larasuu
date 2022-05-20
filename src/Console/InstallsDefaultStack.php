@@ -13,14 +13,58 @@ trait InstallsDefaultStack
      */
     protected function installDefaultStack()
     {
+
+         // NPM Packages...
+        $this->updateNodePackages(function ($packages) {
+            return [
+                'cross-env' => '^5.2.1',
+                'jquery' => '^3.6',
+                'popper.js' => '^1.16.1',
+                'resolve-url-loader'=> '^4.0.0',
+                'rtlcss'=> '^3.0',
+                'sass'=> '1.30.0',
+                'sass-loader'=> '^11.0.1',
+            ] + $packages;
+        });
+
         // Controllers...
-        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/AuthSUU'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/App/Http/Controllers/AuthSUU', app_path('Http/Controllers/AuthSUU'));
+        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Auth'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/App/Http/Controllers/Auth', app_path('Http/Controllers/Auth'));
+
+        (new Filesystem)->ensureDirectoryExists(app_path('Http/Controllers/Template'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/App/Http/Controllers/Template', app_path('Http/Controllers/Template'));
+
 
         // Routes...
         copy(__DIR__.'/../../stubs/default/routes/authsuu.php', base_path('routes/auth.php'));
         copy(__DIR__.'/../../stubs/default/routes/websuu.php', base_path('routes/web.php'));
-        
+        copy(__DIR__.'/../../stubs/default/routes/templatesuu.php', base_path('routes/template.php'));
+
+
+        // Views...
+        (new Filesystem)->ensureDirectoryExists(resource_path('assets'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('data'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('fonts'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('images'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('js'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('lang'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('scss'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('vendor'));
+        (new Filesystem)->ensureDirectoryExists(resource_path('views'));
+
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/assets', resource_path('assets'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/data', resource_path('data'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/fonts', resource_path('fonts'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/images', resource_path('images'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/js', resource_path('js'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/lang', resource_path('lang'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/scss', resource_path('scss'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/vendor', resource_path('vendor'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/views', resource_path('views'));
+
+        // Webpack...
+        copy(__DIR__.'/../../stubs/default/webpack.mix.js', base_path('webpack.mix.js'));
+
 
         $this->info('Lara SUU installed successfully.');
     }
