@@ -25,7 +25,10 @@
         "laravel": {
             "providers": [
                 "TIGIrapuato\\LaraSUU\\LoginSUUProvider"
-            ]
+            ],
+            "aliases": {
+                "Helper": "App\\Helpers\\Helper"
+            }
         }
     }
 }

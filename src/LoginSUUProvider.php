@@ -5,6 +5,7 @@ namespace TIGIrapuato\LaraSUU;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\AliasLoader;
 
 
 class LoginSUUProvider extends ServiceProvider
@@ -60,7 +61,10 @@ class LoginSUUProvider extends ServiceProvider
      */
     public function register()
     {
-        
+        $this->app->booting(function() {
+            $loader = AliasLoader::getInstance();
+            $loader->alias('Helper', App\Helpers\Helper::class);
+        });
     }
 
     /**
