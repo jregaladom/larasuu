@@ -42,6 +42,15 @@ class LoginSUUProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../stubs/default/config/authsuu.php' => config_path('authsuu.php'),
         ]);
+
+        $this->mergeConfigFrom(
+            __DIR__ . '/../stubs/default/config/template.php',
+            'template'
+        );
+
+        $this->publishes([
+            __DIR__ . '/../stubs/default/config/template.php' => config_path('template.php'),
+        ]);
     }
 
     /**

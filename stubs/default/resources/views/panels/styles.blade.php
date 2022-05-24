@@ -1,5 +1,5 @@
 <!-- BEGIN: Vendor CSS-->
-@if ($configData['direction'] === 'rtl' && isset($configData['direction']))
+@if (config('template.MIX_CONTENT_DIRECTION') === 'rtl')
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/vendors-rtl.min.css')) }}" />
 @else
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/vendors.min.css')) }}" />
@@ -31,7 +31,7 @@
 
 <!-- BEGIN: Custom CSS-->
 
-@if ($configData['direction'] === 'rtl' && isset($configData['direction']))
+@if (config('template.MIX_CONTENT_DIRECTION') === 'rtl' )
   <link rel="stylesheet" href="{{ asset(mix('css-rtl/custom-rtl.css')) }}" />
   <link rel="stylesheet" href="{{ asset(mix('css-rtl/style-rtl.css')) }}" />
 
