@@ -32,9 +32,9 @@
                         </div>
                     </div>
                 </div>
-                <h3>John Doe</h3>
-                <h6 class="text-muted">Irapuato</h6>
-                <span class="badge badge-light-primary profile-badge">{{ date('Y') }}</span>
+                <h3>{{ Auth::user()->name }}</h3>
+                <h6 class="text-muted">{{$user_email }}</h6>
+                <span class="badge badge-light-primary profile-badge">SUU ID {{$suu_id }}</span>
                 <hr class="mb-2" />
                 <div class="d-flex justify-content-between align-items-center">
                     <div>

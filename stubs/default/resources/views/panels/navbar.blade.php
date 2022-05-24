@@ -149,7 +149,7 @@
           <a class="dropdown-item nav-link-style">
             <i class="me-50 ficon" data-feather="{{ $configData['theme'] === 'dark' ? 'sun' : 'moon' }}"></i> Tema
           </a>
-          <a class="dropdown-item" href="{{ route('home') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+          <a class="dropdown-item" href="{{ route('suu.logout') }}" >
             <i class="me-50" data-feather="power"></i> Logout
           </a>
           <form method="POST" id="logout-form" action="{{ route('home') }}">

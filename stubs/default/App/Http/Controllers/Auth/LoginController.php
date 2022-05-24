@@ -7,10 +7,11 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Auth\Authenticatable;
 use TIGIrapuato\LaraSUU\Requests\SUURequest;
 
 
-class LoginController extends Controller
+class LoginController extends Controller 
 {
     public function login(Request $request)
     {
@@ -20,22 +21,56 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        if(!$validator->fails()){
-            $data = SUURequest::checkSUU(request()->only(['email', 'password']));
-            if(!$data->error){
+        if (!$validator->fails()) {
+            $dataSUU = SUURequest::checkSUU(request()->only(['email', 'password']));
+            if (!$dataSUU->error) {
                 $user = User::where('email', request()->only(['email']))->first();
-                if($user){
+                if ($user) {
                     Auth::loginUsingId($user->id);
-                    session()->push('user.suu', $data);
+                    session()->push('user.suu', $dataSUU);
+                    $autenticated = true;
+                }else{
+                    $user = $this->stored($dataSUU->data[0]->username,$dataSUU->data[0]->email,request()->only(['password'])['password']);
+                    Auth::login($user);
+                    session()->push('user.suu', $dataSUU);
                     $autenticated = true;
                 }
+            }else{
+                return response()->json([
+                    'message' => 'Usuario o contraseña incorrecta',
+                    'isError'  => true,
+                ], 200);
             }
         }
 
-        if($autenticated){
-            return redirect(config('authsuu.redirect_succes')); 
-        }else{
-            return redirect()->guest( config('authsuu.redirect_fail'));
+        if ($autenticated) {
+            return response()->json([
+                'redirectUrl' => config('authsuu.redirect_succes'),
+                'isError'  => false,
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Usuario o contraseña incorrecta',
+                'isError'  => true,
+            ], 200);
         }
+    }
+
+    public function logout()
+    {
+        session()->flush();
+        Auth::logout();
+        return redirect(config('authsuu.redirect_fail'));
+    }
+
+    public function stored(string $username,string $email,string $password)
+    {
+        $user = User::create([
+            'name' => $username,
+            'email' => $email,
+            'password' => Hash::make($password),
+        ]);
+
+        return $user;
     }
 }

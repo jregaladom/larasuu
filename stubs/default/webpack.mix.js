@@ -22,31 +22,31 @@ const path = require('path')
  |--------------------------------------------------------------------------
  */
 
-function mixAssetsDir(query, cb) {
-  ;(glob.sync('resources/' + query) || []).forEach(f => {
-    f = f.replace(/[\\\/]+/g, '/')
-    cb(f, f.replace('resources', 'public'))
-  })
+function mixAssetsDir(query, cb) {;
+    (glob.sync('resources/' + query) || []).forEach(f => {
+        f = f.replace(/[\\\/]+/g, '/')
+        cb(f, f.replace('resources', 'public'))
+    })
 }
 
 const sassOptions = {
-  precision: 5,
-  includePaths: ['node_modules', 'resources/assets/']
+    precision: 5,
+    includePaths: ['node_modules', 'resources/assets/']
 }
 
 // plugins Core stylesheets
 mixAssetsDir('scss/base/plugins/**/!(_)*.scss', (src, dest) =>
-  mix.sass(src, dest.replace(/(\\|\/)scss(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), { sassOptions })
+    mix.sass(src, dest.replace(/(\\|\/)scss(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), { sassOptions })
 )
 
 // pages Core stylesheets
 mixAssetsDir('scss/base/pages/**/!(_)*.scss', (src, dest) =>
-  mix.sass(src, dest.replace(/(\\|\/)scss(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), { sassOptions })
+    mix.sass(src, dest.replace(/(\\|\/)scss(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), { sassOptions })
 )
 
 // Core stylesheets
 mixAssetsDir('scss/base/core/**/!(_)*.scss', (src, dest) =>
-  mix.sass(src, dest.replace(/(\\|\/)scss(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), { sassOptions })
+    mix.sass(src, dest.replace(/(\\|\/)scss(\\|\/)/, '$1css$2').replace(/\.scss$/, '.css'), { sassOptions })
 )
 
 // script js
@@ -67,29 +67,30 @@ mixAssetsDir('fonts/**/**/*.css', (src, dest) => mix.copy(src, dest))
 mix.copyDirectory('resources/images', 'public/images')
 mix.copyDirectory('resources/data', 'public/data')
 mix.copyDirectory('resources/assets/img', 'public/assets/img')
-
+mix.copy('node_modules/axios/dist/axios.min.js', 'public/vendors/js/axios')
+mix.copy('resources/js/scripts/login.js', 'public/js/scripts')
 mix
-  .js('resources/js/core/app-menu.js', 'public/js/core')
-  .js('resources/js/core/app.js', 'public/js/core')
-  .js('resources/assets/js/scripts.js', 'public/js/core')
-  .sass('resources/scss/base/themes/dark-layout.scss', 'public/css/base/themes', { sassOptions })
-  .sass('resources/scss/base/themes/bordered-layout.scss', 'public/css/base/themes', { sassOptions })
-  .sass('resources/scss/base/themes/semi-dark-layout.scss', 'public/css/base/themes', { sassOptions })
-  .sass('resources/scss/core.scss', 'public/css', { sassOptions })
-  .sass('resources/scss/overrides.scss', 'public/css', { sassOptions })
-  .sass('resources/scss/base/custom-rtl.scss', 'public/css-rtl', { sassOptions })
-  .sass('resources/assets/scss/style-rtl.scss', 'public/css-rtl', { sassOptions })
-  .sass('resources/assets/scss/style.scss', 'public/css', { sassOptions })
+    .js('resources/js/core/app-menu.js', 'public/js/core')
+    .js('resources/js/core/app.js', 'public/js/core')
+    .js('resources/assets/js/scripts.js', 'public/js/core')
+    .sass('resources/scss/base/themes/dark-layout.scss', 'public/css/base/themes', { sassOptions })
+    .sass('resources/scss/base/themes/bordered-layout.scss', 'public/css/base/themes', { sassOptions })
+    .sass('resources/scss/base/themes/semi-dark-layout.scss', 'public/css/base/themes', { sassOptions })
+    .sass('resources/scss/core.scss', 'public/css', { sassOptions })
+    .sass('resources/scss/overrides.scss', 'public/css', { sassOptions })
+    .sass('resources/scss/base/custom-rtl.scss', 'public/css-rtl', { sassOptions })
+    .sass('resources/assets/scss/style-rtl.scss', 'public/css-rtl', { sassOptions })
+    .sass('resources/assets/scss/style.scss', 'public/css', { sassOptions })
 
 mix.then(() => {
-  if (process.env.MIX_CONTENT_DIRECTION === 'rtl') {
-    let command = `node ${path.resolve('node_modules/rtlcss/bin/rtlcss.js')} -d -e ".css" ./public/css/ ./public/css/`
-    exec(command, function (err, stdout, stderr) {
-      if (err !== null) {
-        console.log(err)
-      }
-    })
-  }
+    if (process.env.MIX_CONTENT_DIRECTION === 'rtl') {
+        let command = `node ${path.resolve('node_modules/rtlcss/bin/rtlcss.js')} -d -e ".css" ./public/css/ ./public/css/`
+        exec(command, function(err, stdout, stderr) {
+            if (err !== null) {
+                console.log(err)
+            }
+        })
+    }
 })
 
 // if (mix.inProduction()) {

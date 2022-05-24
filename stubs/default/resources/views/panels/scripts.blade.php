@@ -3,6 +3,11 @@
 <!-- BEGIN Vendor JS-->
 <!-- BEGIN: Page Vendor JS-->
 <script src="{{asset(mix('vendors/js/ui/jquery.sticky.js'))}}"></script>
+
+{{-- BEGIN: Axios Librery --}}
+<script src="{{asset(mix('vendors/js/axios/axios.min.js'))}}"></script>
+{{-- END: Axios Librery --}}
+
 @yield('vendor-script')
 <!-- END: Page Vendor JS-->
 <!-- BEGIN: Theme JS-->

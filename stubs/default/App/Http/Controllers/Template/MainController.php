@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Template;
 
 use Illuminate\Http\Request;
+use TIGIrapuato\LaraSUU\Session\SUUSession; 
 
 class MainController extends Controller
 {
@@ -64,6 +65,9 @@ class MainController extends Controller
 
     public function index()
     {
-        return view('templates/inicio');
+        return view('templates/inicio',
+                    ["user_email"=>SUUSession::getEmail(),
+                     "suu_id"=>SUUSession::getSUUId()]
+        );
     }
 }

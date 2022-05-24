@@ -5,11 +5,13 @@
 <!DOCTYPE html>
 @php $configData = Helper::applClasses(); @endphp
 
-<html class="loading {{($configData['theme'] === 'light') ? '' : $configData['layoutTheme'] }}" lang="@if(session()->has('locale')){{session()->get('locale')}}@else{{$configData['defaultLanguage']}}@endif" data-textdirection="{{ env('MIX_CONTENT_DIRECTION') === 'rtl' ? 'rtl' : 'ltr' }}" @if($configData['theme']==='dark' ) data-layout="dark-layout" @endif>
+<html class="loading {{($configData['theme'] === 'light') ? '' : $configData['layoutTheme'] }}"
+    lang="@if(session()->has('locale')){{session()->get('locale')}}@else{{$configData['defaultLanguage']}}@endif"
+    data-textdirection="{{ env('MIX_CONTENT_DIRECTION') === 'rtl' ? 'rtl' : 'ltr' }}" @if($configData['theme']==='dark'
+    ) data-layout="dark-layout" @endif>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <title>Plantilla</title>
     <link rel="apple-touch-icon" href="{{asset('images/ico/apple-icon-120.png')}}">
     <link rel="shortcut icon" type="image/x-icon" href="https://vccc.irapuato.gob.mx/assets/img/favicon_2021_a.png">
@@ -193,7 +195,9 @@
 
 
 
-<body class="vertical-layout vertical-menu-modern {{ $configData['bodyClass'] }} {{($configData['theme'] === 'dark') ? 'dark-layout' : ''}} {{ $configData['blankPageClass'] }} blank-page" data-menu="vertical-menu-modern" data-col="blank-page" data-framework="laravel" data-asset-path="{{ asset('/')}}">
+<body
+    class="vertical-layout vertical-menu-modern {{ $configData['bodyClass'] }} {{($configData['theme'] === 'dark') ? 'dark-layout' : ''}} {{ $configData['blankPageClass'] }} blank-page"
+    data-menu="vertical-menu-modern" data-col="blank-page" data-framework="laravel" data-asset-path="{{ asset('/')}}">
 
     <!-- BEGIN: Content-->
     <div class="app-content content {{ $configData['pageClass'] }}">
@@ -211,31 +215,51 @@
                         </a>
                         <!-- /Brand logo-->
                         <!-- Left Text-->
-                        <div class="d-none d-lg-flex col-lg-8 align-items-center p-5" style="background: #093568!important; border-right: 5px solid #f60077;">
-                            <div class="w-100 d-lg-flex align-items-center justify-content-center px-5"><img class="img-fluid" src="https://citas.irapuato.gob.mx/assets/img/irapuato_logobco.png" width="60%" alt="Logo Administración" /></div>
+                        <div class="d-none d-lg-flex col-lg-8 align-items-center p-5"
+                            style="background: #093568!important; border-right: 5px solid #f60077;">
+                            <div class="w-100 d-lg-flex align-items-center justify-content-center px-5"><img
+                                    class="img-fluid"
+                                    src="https://citas.irapuato.gob.mx/assets/img/irapuato_logobco.png" width="60%"
+                                    alt="Logo Administración" /></div>
                         </div>
                         <!-- /Left Text-->
                         <!-- Login-->
                         <div class="d-flex col-lg-4 align-items-center auth-bg px-2 p-lg-5">
                             <div class="col-12 col-sm-8 col-md-6 col-lg-12 px-xl-2 mx-auto text-center">
-                                <img src="http://serverdesarrollo.irapuato.gob.mx/repositorio/assets/image-resources/2021/a_paso_firme.png" width="50%" alt="Logo Administración" />
+                                <img src="http://serverdesarrollo.irapuato.gob.mx/repositorio/assets/image-resources/2021/a_paso_firme.png"
+                                    width="50%" alt="Logo Administración" />
                                 <h2 class="card-title fw-bold mb-1">Bienvenido de nuevo! 👋</h2>
-                                <p class="card-text mb-2">Por favor inicie sesión con sus credenciales de acceso usando correo electrónico y contraseña</p>
-                                <form class="auth-login-form mt-2" method="POST">
+                                <p class="card-text mb-2">Por favor inicie sesión con sus credenciales de acceso usando
+                                    correo electrónico y contraseña</p>
+                                <form class="needs-validation" novalidate id="frmLogin">
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <div class="mb-1" style="text-align: left;">
                                         <label class="form-label" for="login-email">Correo electrónico</label>
-                                        <input class="form-control" id="login-email" type="text" name="login-email" placeholder="Ingresa el correo electrónico" aria-describedby="login-email" autofocus="" tabindex="1" />
+                                        <input required class="form-control" id="login-email" type="text"
+                                            name="login-email" placeholder="Ingresa el correo electrónico"
+                                            aria-describedby="login-email" autofocus="" tabindex="1" />
+                                        <div class="invalid-feedback">Favor de ingresar el campo correo electrónico
+                                        </div>
                                     </div>
-                                    <div class="mb-1">
+                                    <div class="mb-1" style="text-align: left;">
                                         <div class="d-flex justify-content-between">
-                                            <label class="form-label" for="login-password">Contraseña</label><a href="auth-forgot-password-cover.html"><small>¿Recuperar contraseña?</small></a>
+                                            <label class="form-label" for="login-password">Contraseña</label><a
+                                                href="auth-forgot-password-cover.html"><small>¿Recuperar
+                                                    contraseña?</small></a>
                                         </div>
                                         <div class="input-group input-group-merge form-password-toggle">
-                                            <input class="form-control form-control-merge" id="login-password" type="password" name="login-password" placeholder="Ingresa la contraseña·" aria-describedby="login-password" tabindex="2" /><span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
+                                            <input required class="form-control" id="login-password" type="password"
+                                                name="login-password" placeholder="Ingresa la contraseña·"
+                                                aria-describedby="login-password" tabindex="2" /><span
+                                                class="input-group-text cursor-pointer"><i
+                                                    data-feather="eye"></i></span>
+                                            <div class="invalid-feedback">Favor de ingresar el campo contraseña.</div>
                                         </div>
                                     </div>
-
-                                    <button class="btn btn-primary w-100" tabindex="4">Iniciar Sesión</button>
+                                    <div id="alertPlaceholder"></div>
+                                    <button type="submit"
+                                        class="btn btn-primary waves-effect waves-float waves-light w-100">Iniciar
+                                        Sesión</button>
                                 </form>
                             </div>
                         </div>
@@ -249,7 +273,9 @@
 
     {{-- include default scripts --}}
     @include('panels/scripts')
-
+    <!-- scripts to login -->
+    <script src="{{ asset(mix('js/scripts/login.js')) }}"></script>
+    <!-- END: Theme JS-->
     <script type="text/javascript">
         $(window).on('load', function() {
             if (feather) {
@@ -259,8 +285,35 @@
                 });
             }
         })
+
+
+        var form = document.getElementById('frmLogin');
+        form.addEventListener('submit', function (event) {
+            
+            if (form.checkValidity() == false) {
+                form.classList.add('invalid');
+            }
+            event.preventDefault();
+
+            axios.post('{{route('suu.login')}}', {
+                            email: document.getElementById('login-email').value,
+                            password: document.getElementById('login-password').value,
+                            _token: '{{ csrf_token() }}'
+            })
+            .then(function(res) {
+                if (res.status == 200 && !res.data.isError) {
+                    console.log(res);
+                    window.location = res.data.redirectUrl;
+                } else {
+                    alertDiv(res.data.message, 'warning');
+                }
+
+            })
+            .catch(function(err) {
+                        alertDiv(err, 'danger');
+            })
+            .then(function() {});
+        });
     </script>
-
 </body>
-
 </html>
