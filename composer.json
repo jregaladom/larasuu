@@ -15,10 +15,7 @@
     "autoload": {
         "psr-4": {
             "TIGIrapuato\\LaraSUU\\": "src/"
-        },
-        "files": [
-            "app/Helpers/helpers.php"
-        ]
+        }
     },
     "minimum-stability": "dev",
     "extra": {
