@@ -1,9 +1,9 @@
 <!DOCTYPE html>
+@php $configData = Helper::applClasses(); @endphp
 
-
-<html class="loading {{( config('template.theme')  === 'light') ? '' : config('template.theme') }}"
-    lang="@if(session()->has('locale')){{session()->get('locale')}}@else{{config('template.defaultLanguage')}}@endif"
-    data-textdirection="{{ config('template.MIX_CONTENT_DIRECTION') === 'rtl' ? 'rtl' : 'ltr' }}" @if(config('template.theme')==='dark'
+<html class="loading {{($configData['theme'] === 'light') ? '' : $configData['layoutTheme'] }}"
+    lang="@if(session()->has('locale')){{session()->get('locale')}}@else{{$configData['defaultLanguage']}}@endif"
+    data-textdirection="{{ env('MIX_CONTENT_DIRECTION') === 'rtl' ? 'rtl' : 'ltr' }}" @if($configData['theme']==='dark'
     ) data-layout="dark-layout" @endif>
 
 <head>
@@ -192,7 +192,7 @@
 
 
 <body
-    class="vertical-layout vertical-menu-modern {{  config('template.bodyClass') }} {{(config('template.theme') === 'dark') ? 'dark-layout' : ''}} {{ config('template.blankPageClass')  }} blank-page"
+    class="vertical-layout vertical-menu-modern {{ $configData['bodyClass'] }} {{($configData['theme'] === 'dark') ? 'dark-layout' : ''}} {{ $configData['blankPageClass'] }} blank-page"
     data-menu="vertical-menu-modern" data-col="blank-page" data-framework="laravel" data-asset-path="{{ asset('/')}}">
 
     <!-- BEGIN: Content-->
@@ -314,4 +314,5 @@
         });
     </script>
 </body>
+
 </html>

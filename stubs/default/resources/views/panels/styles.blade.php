@@ -1,5 +1,5 @@
 <!-- BEGIN: Vendor CSS-->
-@if (config('template.MIX_CONTENT_DIRECTION') === 'rtl')
+@if ($configData['direction'] === 'rtl' && isset($configData['direction']))
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/vendors-rtl.min.css')) }}" />
 @else
   <link rel="stylesheet" href="{{ asset(mix('vendors/css/vendors.min.css')) }}" />
