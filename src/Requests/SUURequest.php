@@ -9,7 +9,7 @@ class SUURequest
     {
         $url = env('SUU_URL');
         $response = Http::asForm()->post(
-        "{$url}/auth_beta_r/index.php/api/Usuario/select",
+        "{$url}/api/Usuario/select",
         [
             'username' => $campos['email'],
             'password' => md5($campos['password'])
