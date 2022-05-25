@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\AliasLoader;
-
+use App\Helpers\Helper;
 
 class LoginSUUProvider extends ServiceProvider
 {
@@ -63,7 +63,7 @@ class LoginSUUProvider extends ServiceProvider
     {
         $this->app->booting(function() {
             $loader = AliasLoader::getInstance();
-            $loader->alias('Helper', App\Helpers\Helper::class);
+            $loader->alias('Helper', Helper::class);
         });
     }
 

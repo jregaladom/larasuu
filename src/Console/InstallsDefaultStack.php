@@ -70,7 +70,7 @@ trait InstallsDefaultStack
         // Webpack...
         copy(__DIR__.'/../../stubs/default/webpack.mix.js', base_path('webpack.mix.js'));
 
-
         $this->info('Lara SUU installed successfully.');
+        $this->comment('Please execute the "npm install" && "npm run dev" commands to build your assets.');
     }
 }
