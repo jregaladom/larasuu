@@ -65,6 +65,11 @@ class LoginSUUProvider extends ServiceProvider
             $loader = AliasLoader::getInstance();
             $loader->alias('Helper', Helper::class);
         });
+
+        foreach (glob(app_path() . '/Helpers/*.php') as $helpersfilename)
+        {
+            require_once($helpersfilename);
+        }
     }
 
     /**
