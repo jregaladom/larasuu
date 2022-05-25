@@ -47,7 +47,8 @@ trait InstallsDefaultStack
         copy(__DIR__.'/../../stubs/default/Config/database.php', base_path('config/database.php'));
 
         // Providers ...
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/App/Providers', app_path('app/Providers'));
+        (new Filesystem)->ensureDirectoryExists(app_path('Providers'));
+        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/App/Providers', app_path('Providers'));
 
         // Routes...
         copy(__DIR__.'/../../stubs/default/routes/authsuu.php', base_path('routes/auth.php'));
