@@ -12,22 +12,41 @@ Coordinación de Geomatica.
 
 ## Installation
 
-Descarga e instala el paquete
+1. Descarga e instala el paquete
 
 ```bash
   composer require tig-irapuato/larasuu
   php artisan larasuu:install
+```
+
+2. Selecciona el provider del paquete TIGIrapuato\LaraSUU\LoginSUUProvider
+```bash
   php artisan vendor:publish
 ```
 
-Selecciona el provider del paquete TIGIrapuato\LaraSUU\LoginSUUProvider
+3. Agrega el service provider del menu de la platantilla en confi/app.php
+```javascript
+ 'providers' => [
+      App\Providers\MenuServiceProvider::class,
+      ...
+  ]
+```
 
 ## Environment Variables
 
-Para correr corectamente, debes agregar las siguientes variables en tu archivo .env
+Para ejecutar corectamente, debes agregar las siguientes variables en tu archivo .env
 
+URL del suu hasta index.php
 `SUU_URL`
 
+Variables de conexión de auth
+`DB_CONNECTION_AUTH=`
+`DB_HOST_AUTH=`
+`DB_PORT_AUTH=`
+`DB_DATABASE_AUTH=`
+`DB_SCHEMA_AUTH=`
+`DB_USERNAME_AUTH=`
+`DB_PASSWORD_AUTH=`
 
 ## Documentation
 
@@ -56,6 +75,4 @@ Los metodos dispnibles son:
 Ejemplo
 ```bash
   SUUSession::getEmail();
-
-  
 ```
