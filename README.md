@@ -37,9 +37,11 @@ Coordinación de Geomatica.
 Para ejecutar corectamente, debes agregar las siguientes variables en tu archivo .env
 
 URL del suu hasta index.php
+
 `SUU_URL`
 
 Variables de conexión de auth
+
 `DB_CONNECTION_AUTH=`
 
 `DB_HOST_AUTH=`
