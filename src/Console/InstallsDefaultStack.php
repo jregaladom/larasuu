@@ -40,6 +40,12 @@ trait InstallsDefaultStack
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/Helpers', app_path('Helpers'));
 
 
+        // Models...
+        copy(__DIR__.'/../../stubs/default/App/Models/User.php', base_path('app/Models/User.php'));
+
+        // Config ...
+        copy(__DIR__.'/../../stubs/default/Config/database.php', base_path('config/database.php'));
+
         // Routes...
         copy(__DIR__.'/../../stubs/default/routes/authsuu.php', base_path('routes/auth.php'));
         copy(__DIR__.'/../../stubs/default/routes/websuu.php', base_path('routes/web.php'));
