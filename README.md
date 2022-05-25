@@ -41,11 +41,17 @@ URL del suu hasta index.php
 
 Variables de conexión de auth
 `DB_CONNECTION_AUTH=`
+
 `DB_HOST_AUTH=`
+
 `DB_PORT_AUTH=`
+
 `DB_DATABASE_AUTH=`
+
 `DB_SCHEMA_AUTH=`
+
 `DB_USERNAME_AUTH=`
+
 `DB_PASSWORD_AUTH=`
 
 ## Documentation
