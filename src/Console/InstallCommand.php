@@ -34,11 +34,9 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-       
-
-        if ($this->option('full')) {
+        if ($this->argument('stack') === 'full') {
             return $this->installsFullStack();
-        {
+        } else {
             return $this->installDefaultStack();
         }
     }
