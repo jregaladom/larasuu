@@ -65,7 +65,6 @@ mixAssetsDir('vendors/css/editors/quill/fonts/', (src, dest) => mix.copy(src, de
 mixAssetsDir('fonts', (src, dest) => mix.copy(src, dest))
 mixAssetsDir('fonts/**/**/*.css', (src, dest) => mix.copy(src, dest))
 mix.copyDirectory('resources/images', 'public/images')
-mix.copyDirectory('resources/data', 'public/data')
 mix.copyDirectory('resources/assets/img', 'public/assets/img')
 mix.copy('node_modules/axios/dist/axios.min.js', 'public/vendors/js/axios')
 mix.copy('resources/js/scripts/login.js', 'public/js/scripts')

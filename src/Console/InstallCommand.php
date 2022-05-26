@@ -10,14 +10,15 @@ use Symfony\Component\Process\Process;
 
 class InstallCommand extends Command
 {
-    use InstallsDefaultStack;
+    use InstallsDefaultStack, InstallsFullStack;
 
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'larasuu:install {stack=default : The development stack that should be installed}';
+    protected $signature = 'larasuu:install {stack=default : Estructura simple de la plantilla}
+                            {--full : Estructura completa de plantilla con ejemplos y rutas de ejemplos}';
 
     /**
      * The console command description.
@@ -33,7 +34,13 @@ class InstallCommand extends Command
      */
     public function handle()
     {
-        return $this->installDefaultStack();
+       
+
+        if ($this->option('full')) {
+            return $this->installsFullStack();
+        {
+            return $this->installDefaultStack();
+        }
     }
 
     /**

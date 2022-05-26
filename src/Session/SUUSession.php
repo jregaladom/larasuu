@@ -6,26 +6,21 @@ class SUUSession
 {
     public static function getUserName()
     {
-        return session()->get('user.suu')[0]->data[0]->username;
+        return session()->get('user.suu')[0]['username'];
     }
 
     public static function getEmail()
     {
-        return session()->get('user.suu')[0]->data[0]->email;
+        return session()->get('user.suu')[0]['email'];
     }
 
     public static function getSUUId()
     {
-        return session()->get('user.suu')[0]->data[0]->id;
-    }
-
-    public static function getToken()
-    {
-        return session()->get('user.suu')[0]->data[0]->token;
+        return session()->get('user.suu')[0]['id'];
     }
 
     public static function getRoles()
     {
-        return session()->get('user.suu')[0]->data[0]->roles;
+        return session()->get('user.suu')[0]['roles'];
     }
 }

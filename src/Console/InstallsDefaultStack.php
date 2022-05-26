@@ -68,7 +68,6 @@ trait InstallsDefaultStack
         (new Filesystem)->ensureDirectoryExists(resource_path('views'));
 
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/assets', resource_path('assets'));
-        (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/data', resource_path('data'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/fonts', resource_path('fonts'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/images', resource_path('images'));
         (new Filesystem)->copyDirectory(__DIR__.'/../../stubs/default/resources/js', resource_path('js'));

@@ -36,11 +36,24 @@ Coordinación de Geomatica.
 
 Para ejecutar corectamente, debes agregar las siguientes variables en tu archivo .env
 
-URL del suu hasta index.php
 
-`SUU_URL`
 
-Variables de conexión de auth
+Variables de conexión SUU
+
+`DB_CONNECTION_SUU=`
+
+`DB_HOST_SUU=`
+
+`DB_PORT_SUU=`
+
+`DB_DATABASE_SUU=`
+
+`DB_USERNAME_SUU=`
+
+`DB_PASSWORD_SUU=`
+
+
+Variables de conexión de auth-tig
 
 `DB_CONNECTION_AUTH=`
 
@@ -61,8 +74,8 @@ Variables de conexión de auth
 Definir ruta de inicio de sesión exitoso y fallido
 
 En config/authsuu.php 
-redirect_succes se agrega la ruta de logeo exitoso
-redirect_fail se agrega la ruta de logeo fallido
+redirect_succes se agrega la ruta de login exitoso
+redirect_fail se agrega la ruta de login fallido
 
 
 Ruta por default para iniciar sesión, se encuentra en routes\auth.php
@@ -70,15 +83,14 @@ suu.login para iniciar sesión
 ## Obtener datos de sesión
 
 Para obtener datos de la sesión importamos el paquete
-use TIGIrapuato\LaraSUU\Session\SUUSession.
+`use TIGIrapuato\LaraSUU\Session\SUUSession`
 
-Los metodos dispnibles son:
-
+Los metodos disponibles son:
 
 - getUserName
 - getEmail
 - getRoles
-
+- getSUUId
 
 Ejemplo
 ```bash
