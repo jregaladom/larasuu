@@ -36,7 +36,7 @@ class LoginController extends Controller
                     session()->push('user.suu', $suu);
                     $autenticated = true;
                 } else {
-                    $user = $this->stored($dataSUU['data']->username, $dataSUU['data']->correo_electronico, request()->only(['password'])['password']);
+                    $user = $this->stored($dataSUU['data']['username'], $dataSUU['data']['correo_electronico'], request()->only(['password'])['password']);
                     Auth::login($user);
                     session()->push('user.suu', $suu);
                     $autenticated = true;
