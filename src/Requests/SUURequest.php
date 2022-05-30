@@ -11,7 +11,7 @@ class SUURequest
     {
         $error = true;
         $user = UserSUU::where([
-            'username' => $fields['email'],
+            'correo_electronico' => $fields['email'],
             'password' => md5($fields['password'])
         ])->first();
 
