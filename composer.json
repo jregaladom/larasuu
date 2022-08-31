@@ -3,7 +3,7 @@
     "description": "Este paquete es usado para la autenticaticación de usuarios del sistema SUU",
     "type": "library",
     "require": {
-        "php": "^7.4",
+        "php": "^7.3",
         "illuminate/http": "^8.42",
         "illuminate/support": "^8.42"
     },
